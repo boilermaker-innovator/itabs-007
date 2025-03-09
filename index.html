@@ -1056,3 +1056,325 @@ function updateStats() {
         updateStats();
     });
 </script>
+<!-- 👍i Widget - Made with 👍i Widget Generator -->
+<!-- HTML -->
+<div id="thumbs-widget">
+    <div id="thumbs-button">
+        📱
+        <div id="i-indicator">i</div>
+    </div>
+    
+    <div id="reactions-popup" class="thumbs-popup">
+        <div class="popup-title">What do you think?</div>
+        
+        <div class="reaction-option" data-reaction="helpful">
+            <span class="emoji">👍</span> This is helpful
+        </div>
+        
+        <div class="reaction-option" data-reaction="love">
+            <span class="emoji">❤️</span> I love this
+        </div>
+        
+        <div class="reaction-option" data-reaction="amazing">
+            <span class="emoji">🔥</span> This is amazing
+        </div>
+        
+        <div class="reaction-option" data-reaction="informative">
+            <span class="emoji">💡</span> Very informative
+        </div>
+        
+        <div class="thumbs-close-button">
+            Close
+        </div>
+    </div>
+    
+    <div id="stats-popup" class="thumbs-popup">
+        <div class="popup-title">Reaction Statistics</div>
+        <div id="stats-content">
+            <p id="total-reactions">Total reactions: 0</p>
+            
+            <div class="stats-item">
+                <div><span class="emoji">👍</span> This is helpful: <span id="helpful-count">0</span> (<span id="helpful-percent">0%</span>)</div>
+                <div class="progress-bar"><div class="progress" id="helpful-progress"></div></div>
+            </div>
+            
+            <div class="stats-item">
+                <div><span class="emoji">❤️</span> I love this: <span id="love-count">0</span> (<span id="love-percent">0%</span>)</div>
+                <div class="progress-bar"><div class="progress" id="love-progress"></div></div>
+            </div>
+            
+            <div class="stats-item">
+                <div><span class="emoji">🔥</span> This is amazing: <span id="amazing-count">0</span> (<span id="amazing-percent">0%</span>)</div>
+                <div class="progress-bar"><div class="progress" id="amazing-progress"></div></div>
+            </div>
+            
+            <div class="stats-item">
+                <div><span class="emoji">💡</span> Very informative: <span id="informative-count">0</span> (<span id="informative-percent">0%</span>)</div>
+                <div class="progress-bar"><div class="progress" id="informative-progress"></div></div>
+            </div>
+        </div>
+        
+        <div class="thumbs-close-button">
+            Close
+        </div>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+/* 👍i Widget Styles */
+#thumbs-widget {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    z-index: 9999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#thumbs-button {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+#thumbs-button:hover {
+    transform: scale(1.05);
+}
+
+#i-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    background: #ff3a2f;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.thumbs-popup {
+    position: absolute;
+    bottom: 85px;
+    right: 0;
+    background: white;
+    width: 320px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    display: none;
+    animation: thumbs-fadeIn 0.3s ease;
+}
+
+@keyframes thumbs-fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.popup-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+}
+
+.reaction-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.reaction-option:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.emoji {
+    font-size: 28px;
+    margin-right: 15px;
+}
+
+.thumbs-close-button {
+    color: #ff3a2f;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.thumbs-close-button:hover {
+    color: #333;
+}
+
+.stats-item {
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #ff3a2f;
+    width: 0%;
+    transition: width 0.8s ease-out;
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+    .thumbs-popup {
+        width: 280px;
+    }
+    
+    .reaction-option {
+        padding: 10px 14px;
+    }
+    
+    .emoji {
+        font-size: 24px;
+    }
+}
+</style>
+
+<!-- JavaScript -->
+<script>
+// 👍i Widget Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Reaction data
+    let reactions = {
+        helpful: 0,
+        love: 0, 
+        amazing: 0,
+        informative: 0
+    };
+    
+    // Try to load saved reactions
+    try {
+        const savedReactions = localStorage.getItem('thumbs-widget-reactions');
+        if (savedReactions) {
+            reactions = JSON.parse(savedReactions);
+        }
+    } catch(e) {
+        console.log('Could not load saved reactions', e);
+    }
+    
+    // Initialize the widget
+    initThumbsWidget();
+    
+    // Initialize the widget
+    function initThumbsWidget() {
+        // Setup event listeners
+        document.getElementById('thumbs-button').addEventListener('click', toggleThumbsPopup);
+        
+        document.querySelectorAll('.reaction-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const reaction = this.getAttribute('data-reaction');
+                saveReaction(reaction);
+            });
+        });
+        
+        document.querySelectorAll('.thumbs-close-button').forEach(button => {
+            button.addEventListener('click', closePopups);
+        });
+        
+        // Update stats on initial load
+        updateStats();
+    }
+    
+    // Toggle reactions popup
+    function toggleThumbsPopup() {
+        closePopups();
+        document.getElementById('reactions-popup').style.display = 'block';
+    }
+    
+    // Save reaction and show stats
+    function saveReaction(type) {
+        // Increment the selected reaction
+        reactions[type]++;
+        
+        // Save to localStorage
+        try {
+            localStorage.setItem('thumbs-widget-reactions', JSON.stringify(reactions));
+        } catch(e) {
+            console.log('Could not save reaction', e);
+        }
+        
+        // Update and show stats
+        updateStats();
+        closePopups();
+        document.getElementById('stats-popup').style.display = 'block';
+    }
+    
+    // Close all popups
+    function closePopups() {
+        document.getElementById('reactions-popup').style.display = 'none';
+        document.getElementById('stats-popup').style.display = 'none';
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const total = reactions.helpful + reactions.love + reactions.amazing + reactions.informative;
+        
+        // Update total count
+        document.getElementById('total-reactions').textContent = 'Total reactions: ' + total;
+        
+        if (total === 0) {
+            return; // No need to calculate percentages if there are no reactions
+        }
+        
+        // Calculate percentages
+        const helpfulPercent = Math.round((reactions.helpful / total) * 100) || 0;
+        const lovePercent = Math.round((reactions.love / total) * 100) || 0;
+        const amazingPercent = Math.round((reactions.amazing / total) * 100) || 0;
+        const informativePercent = Math.round((reactions.informative / total) * 100) || 0;
+        
+        // Update helpful stats
+        document.getElementById('helpful-count').textContent = reactions.helpful;
+        document.getElementById('helpful-percent').textContent = helpfulPercent + '%';
+        document.getElementById('helpful-progress').style.width = helpfulPercent + '%';
+        
+        // Update love stats
+        document.getElementById('love-count').textContent = reactions.love;
+        document.getElementById('love-percent').textContent = lovePercent + '%';
+        document.getElementById('love-progress').style.width = lovePercent + '%';
+        
+        // Update amazing stats
+        document.getElementById('amazing-count').textContent = reactions.amazing;
+        document.getElementById('amazing-percent').textContent = amazingPercent + '%';
+        document.getElementById('amazing-progress').style.width = amazingPercent + '%';
+        
+        // Update informative stats
+        document.getElementById('informative-count').textContent = reactions.informative;
+        document.getElementById('informative-percent').textContent = informativePercent + '%';
+        document.getElementById('informative-progress').style.width = informativePercent + '%';
+    }
+});
+</script>
