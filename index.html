@@ -726,19 +726,34 @@
         switchTab('code');
     }
     
-    // Copy code to clipboard
-    function copyCode() {
-        const codeContent = document.getElementById('code-content');
-        codeContent.select();
-        document.execCommand('copy');
-        
-        const successMessage = document.getElementById('success-message');
-        successMessage.style.display = 'inline-block';
-        
-        setTimeout(function() {
-            successMessage.style.display = 'none';
-        }, 2000);
-    }
+    // Copy code to clipboard - iPad compatible version
+function copyCode() {
+    const codeContent = document.getElementById('code-content');
+    
+    // Save the readonly state
+    const isReadOnly = codeContent.readOnly;
+    
+    // Make it editable temporarily
+    codeContent.readOnly = false;
+    
+    // Select the text
+    codeContent.focus();
+    codeContent.select();
+    
+    // Execute copy command
+    document.execCommand('copy');
+    
+    // Restore the readonly state
+    codeContent.readOnly = isReadOnly;
+    
+    // Show success message
+    const successMessage = document.getElementById('success-message');
+    successMessage.style.display = 'inline-block';
+    
+    setTimeout(function() {
+        successMessage.style.display = 'none';
+    }, 2000);
+}
     
     // Generate customized code
     function generateCode() {
