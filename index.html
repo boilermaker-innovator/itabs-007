@@ -1,1118 +1,982 @@
-<!-- Basic Meta Tags -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="iTabs: Transform how users interact with information through rich, contextual, mobile-optimized content displays that enhance engagement without disrupting the user experience.">
-<meta name="keywords" content="iTabs, interactive content, information display, mobile content, user experience, content tabs, digital engagement">
-<meta name="author" content="Boilermaker Innovator">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://boilermaker-innovator.github.io/itabs-007/">
-<meta property="og:title" content="iTabs - Contextual Information Display System">
-<meta property="og:description" content="Transform how users interact with information through rich, contextual, mobile-optimized content displays that enhance engagement without disrupting the user experience.">
-<meta property="og:image" content="https://boilermaker-innovator.github.io/itabs-007/preview-image.jpg">
-<meta property="og:site_name" content="iTabs">
-<meta property="og:locale" content="en_US">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://boilermaker-innovator.github.io/itabs-007/">
-<meta property="twitter:title" content="iTabs - Contextual Information Display System">
-<meta property="twitter:description" content="Transform how users interact with information through rich, contextual, mobile-optimized content displays that enhance engagement without disrupting the user experience.">
-<meta property="twitter:image" content="https://boilermaker-innovator.github.io/itabs-007/preview-image.jpg">
-
-<!-- iOS App Link Meta Tags -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="iTabs">
-
-<!-- Canonical -->
-<link rel="canonical" href="https://boilermaker-innovator.github.io/itabs-007/">
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<!-- Additional SEO Meta Tags -->
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#4361ee">
-
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>👍i Mobile Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTabs Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .demo-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .demo-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .demo-subtitle {
-            font-size: 16px;
-            color: #666;
-        }
-
-        /* 👍i Widget Styles */
-        #thumbs-widget {
-            position: relative;
-            z-index: 1000;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        #thumbs-button {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            cursor: pointer;
-            position: relative;
-            user-select: none;
-            transition: transform 0.2s;
-        }
-        
-        #thumbs-button:active {
-            transform: scale(0.95);
-        }
-
-        #i-indicator {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 32px;
-            height: 32px;
-            background: #4361ee;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-style: italic;
-            font-weight: bold;
-        }
-
-        .thumbs-popup {
-            position: absolute;
-            left: 0;
-            right: 0;
-            margin: 20px auto;
-            background: white;
-            width: 100%;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            display: none;
-        }
-
-        .popup-title {
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: #333;
-            font-size: 20px;
-            text-align: center;
-        }
-
-        .reaction-option {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            margin-bottom: 15px;
-            background: #f8f9fa;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 18px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .reaction-option:active {
-            background: #e9ecef;
-        }
-
-        .emoji {
-            font-size: 30px;
-            margin-right: 15px;
-        }
-
-        .thumbs-close-button {
-            color: #4361ee;
-            text-align: center;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 18px;
-            padding: 10px;
-            font-weight: 600;
-        }
-
-        .stats-item {
-            margin: 20px 0;
-            font-size: 16px;
-        }
-
-        .progress-bar {
-            height: 12px;
-            background: #e9ecef;
-            border-radius: 6px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-
-        .progress {
-            height: 100%;
-            background: #4361ee;
-            width: 0%;
-            transition: width 0.5s ease-out;
-        }
-        
-        .stats-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .stats-code-button {
-            background: #4361ee;
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            flex: 1;
-            margin-right: 10px;
-        }
-        
-        /* Code Popup */
-        #code-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .popup-content {
-            background: white;
-            width: 90%;
-            max-width: 90%;
-            height: 90%;
-            max-height: 90%;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .popup-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .popup-title {
-            font-weight: bold;
-            font-size: 18px;
-            text-align: left;
-            margin-bottom: 0;
-        }
-        
-        .close-button {
-            font-size: 28px;
-            line-height: 1;
-            cursor: pointer;
-            color: #666;
-            padding: 5px;
-        }
-        
-        .popup-tabs {
-            display: flex;
-            background: #f0f2f5;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .popup-tab {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-        }
-        
-        .popup-tab.active {
-            background: white;
-            color: #4361ee;
-            border-bottom: 3px solid #4361ee;
-        }
-        
-        .tab-content {
-            display: none;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        #code-tab {
-            height: 100%;
-        }
-        
-        #code-content {
-            width: 100%;
-            height: 100%;
-            border: none;
-            resize: none;
-            padding: 20px;
-            font-family: monospace;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        
-        #customize-content {
-            padding: 20px;
-        }
-        
-        .customize-section {
-            margin-bottom: 25px;
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .customize-section h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 18px;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        .emoji-input {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .emoji-input input[type="text"] {
-            width: 60px;
-            font-size: 20px;
-            text-align: center;
-        }
-        
-        .emoji-input .reaction-text {
-            flex-grow: 1;
-        }
-        
-        .popup-footer {
-            padding: 15px 20px;
-            background: #f8f9fa;
-            border-top: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-buttons {
-            display: flex;
-            gap: 10px;
-            margin-left: auto;
-        }
-        
-        .update-button {
-            background: #34a853;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .copy-button {
-            background: #4361ee;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .success-message {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-right: 15px;
-            font-weight: 600;
-        }
-        
-        /* Instructions */
-        .instructions {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 400px;
-        }
-        
-        .instructions h2 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .step {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 28px;
-            height: 28px;
-            background: #4361ee;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 28px;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        /* Toast */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            z-index: 3000;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="demo-header">
-        <h1 class="demo-title">👍i Interactive Demo</h1>
-        <p class="demo-subtitle">Tap the button below to try it out</p>
-    </div>
-    
-    <!-- 👍i Widget Implementation -->
-    <div id="thumbs-widget">
-        <div id="thumbs-button" onclick="toggleThumbs()">
-            👍
-            <div id="i-indicator">i</div>
-        </div>
-        
-        <div id="reactions-popup" class="thumbs-popup">
-            <div class="popup-title">What do you think?</div>
-            
-            <div class="reaction-option" onclick="saveReaction('helpful')">
-                <span class="emoji">👍</span> This is helpful
-            </div>
-            
-            <div class="reaction-option" onclick="saveReaction('love')">
-                <span class="emoji">❤️</span> I love this
-            </div>
-            
-            <div class="reaction-option" onclick="saveReaction('amazing')">
-                <span class="emoji">🔥</span> This is amazing
-            </div>
-            
-            <div class="reaction-option" onclick="saveReaction('informative')">
-                <span class="emoji">💡</span> Very informative
-            </div>
-            
-            <div class="thumbs-close-button" onclick="closeThumbsPopups()">
-                Close
-            </div>
-        </div>
-        
-        <div id="stats-popup" class="thumbs-popup">
-            <div class="popup-title">Reaction Statistics</div>
-            <div id="stats-content">
-                <p>No reactions yet</p>
-            </div>
-            <div class="stats-buttons">
-                <button class="stats-code-button" onclick="openCodePopup()">Get Code</button>
-                <div class="thumbs-close-button" onclick="closeThumbsPopups()">Close</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="instructions">
-        <h2>How it works</h2>
-        <div class="step">
-            <span class="step-number">1</span>
-            Tap the 👍i button to open reaction options
-        </div>
-        <div class="step">
-            <span class="step-number">2</span>
-            Choose a reaction to register your feedback
-        </div>
-        <div class="step">
-            <span class="step-number">3</span>
-            View statistics and get the code to use on your site
-        </div>
-    </div>
-    
-    <!-- Code Popup -->
-    <div id="code-popup">
-        <div class="popup-content">
-            <div class="popup-header">
-                <div class="popup-title">👍i Widget Code</div>
-                <div class="close-button" onclick="closeCodePopup()">&times;</div>
-            </div>
-            
-            <div class="popup-tabs">
-                <button class="popup-tab active" onclick="switchTab('code')">Code</button>
-                <button class="popup-tab" onclick="switchTab('customize')">Customize</button>
-            </div>
-            
-            <div id="code-tab" class="tab-content active">
-                <textarea id="code-content" readonly></textarea>
-            </div>
-            
-            <div id="customize-tab" class="tab-content">
-                <div id="customize-content">
-                    <div class="customize-section">
-                        <h3>Reactions</h3>
-                        <div class="form-group emoji-input">
-                            <input type="text" id="emoji1" value="👍" maxlength="2">
-                            <input type="text" id="reaction1" class="reaction-text" value="This is helpful">
-                        </div>
-                        <div class="form-group emoji-input">
-                            <input type="text" id="emoji2" value="❤️" maxlength="2">
-                            <input type="text" id="reaction2" class="reaction-text" value="I love this">
-                        </div>
-                        <div class="form-group emoji-input">
-                            <input type="text" id="emoji3" value="🔥" maxlength="2">
-                            <input type="text" id="reaction3" class="reaction-text" value="This is amazing">
-                        </div>
-                        <div class="form-group emoji-input">
-                            <input type="text" id="emoji4" value="💡" maxlength="2">
-                            <input type="text" id="reaction4" class="reaction-text" value="Very informative">
-                        </div>
-                    </div>
-                    
-                    <div class="customize-section">
-                        <h3>Appearance</h3>
-                        <div class="form-group">
-                            <label for="primary-color">Primary Color</label>
-                            <input type="color" id="primary-color" value="#4361ee">
-                        </div>
-                        <div class="form-group">
-                            <label for="button-position">Position</label>
-                            <select id="button-position">
-                                <option value="bottom-right">Bottom Right</option>
-                                <option value="bottom-left">Bottom Left</option>
-                                <option value="top-right">Top Right</option>
-                                <option value="top-left">Top Left</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="customize-section">
-                        <h3>Text</h3>
-                        <div class="form-group">
-                            <label for="popup-heading">Reactions Popup Heading</label>
-                            <input type="text" id="popup-heading" value="What do you think?">
-                        </div>
-                        <div class="form-group">
-                            <label for="stats-heading">Stats Popup Heading</label>
-                            <input type="text" id="stats-heading" value="Reaction Statistics">
-                        </div>
-                        <div class="form-group">
-                            <label for="button-text">Main Button Emoji</label>
-                            <input type="text" id="button-text" value="👍" maxlength="2" style="font-size: 20px; text-align: center;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="popup-footer">
-                <span id="success-message" class="success-message">Code copied!</span>
-                <div class="footer-buttons">
-                    <button id="update-button" class="update-button" onclick="updateCustomizations()">Update Code</button>
-                    <button class="copy-button" onclick="copyCode()">Copy Code</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="toast" class="toast"></div>
-    // Add this script tag to the end of the HTML body
-<script>
-    // 👍i Widget Functionality
-    var reactions = {
-        helpful: 0,
-        love: 0,
-        amazing: 0,
-        informative: 0
-    };
-
-    // Try to load saved data
-    try {
-        var savedReactions = localStorage.getItem('thumbs-widget-reactions');
-        if (savedReactions) {
-            reactions = JSON.parse(savedReactions);
-        }
-    } catch(e) {
-        console.log('Could not load saved reactions');
-    }
-
-    // Toggle reactions popup
-    function toggleThumbs() {
-        closeThumbsPopups();
-        document.getElementById('reactions-popup').style.display = 'block';
-    }
-
-    // Save reaction and show stats
-    function saveReaction(type) {
-        // Increment the selected reaction type
-        reactions[type]++;
-        
-        // Save to localStorage
-        try {
-            localStorage.setItem('thumbs-widget-reactions', JSON.stringify(reactions));
-        } catch(e) {
-            console.log('Could not save reaction');
-        }
-        
-        showToast("Thank you for your feedback!");
-        closeThumbsPopups();
-        updateStats();
-        document.getElementById('stats-popup').style.display = 'block';
-    }
-
-    // Close all popups
-    function closeThumbsPopups() {
-        document.getElementById('reactions-popup').style.display = 'none';
-        document.getElementById('stats-popup').style.display = 'none';
-    }
-
-    // Update statistics display
-    function updateStats() {
-        var total = reactions.helpful + reactions.love + reactions.amazing + reactions.informative;
-        var statsContent = document.getElementById('stats-content');
-        
-        if (total === 0) {
-            statsContent.innerHTML = '<p>No reactions yet</p>';
-            return;
-        }
-        
-        var helpfulPercent = Math.round((reactions.helpful / total) * 100) || 0;
-        var lovePercent = Math.round((reactions.love / total) * 100) || 0;
-        var amazingPercent = Math.round((reactions.amazing / total) * 100) || 0;
-        var informativePercent = Math.round((reactions.informative / total) * 100) || 0;
-        
-        var html = '<p><strong>Total reactions:</strong> ' + total + '</p>';
-        
-        html += '<div class="stats-item">';
-        html += '<div>👍 This is helpful: ' + reactions.helpful + ' (' + helpfulPercent + '%)</div>';
-        html += '<div class="progress-bar"><div class="progress" style="width:' + helpfulPercent + '%"></div></div>';
-        html += '</div>';
-        
-        html += '<div class="stats-item">';
-        html += '<div>❤️ I love this: ' + reactions.love + ' (' + lovePercent + '%)</div>';
-        html += '<div class="progress-bar"><div class="progress" style="width:' + lovePercent + '%"></div></div>';
-        html += '</div>';
-        
-        html += '<div class="stats-item">';
-        html += '<div>🔥 This is amazing: ' + reactions.amazing + ' (' + amazingPercent + '%)</div>';
-        html += '<div class="progress-bar"><div class="progress" style="width:' + amazingPercent + '%"></div></div>';
-        html += '</div>';
-        
-        html += '<div class="stats-item">';
-        html += '<div>💡 Very informative: ' + reactions.informative + ' (' + informativePercent + '%)</div>';
-        html += '<div class="progress-bar"><div class="progress" style="width:' + informativePercent + '%"></div></div>';
-        html += '</div>';
-        
-        statsContent.innerHTML = html;
-        
-        // Animate progress bars
-        setTimeout(function() {
-            var bars = document.querySelectorAll('.progress');
-            bars.forEach(function(bar) {
-                var width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(function() {
-                    bar.style.width = width;
-                }, 50);
-            });
-        }, 50);
-    }
-
-    // Display toast message
-    function showToast(message) {
-        const toast = document.getElementById('toast');
-        toast.textContent = message;
-        toast.style.display = 'block';
-        
-        setTimeout(function() {
-            toast.style.display = 'none';
-        }, 2000);
-    }
-
-    // Open code popup
-    function openCodePopup() {
-        document.getElementById('code-popup').style.display = 'flex';
-        generateCode();
-    }
-    
-    // Close code popup
-    function closeCodePopup() {
-        document.getElementById('code-popup').style.display = 'none';
-    }
-    
-    // Switch between code and customize tabs
-    function switchTab(tabName) {
-        const tabs = document.querySelectorAll('.popup-tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabs.forEach(tab => tab.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        
-        document.querySelector(`.popup-tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
-        document.getElementById(`${tabName}-tab`).classList.add('active');
-    }
-    
-    // Update code based on customizations
-    function updateCustomizations() {
-        generateCode();
-        showToast("Code updated with your customizations!");
-        switchTab('code');
-    }
-    
-    // Copy code to clipboard - iPad compatible version
-function copyCode() {
-    const codeContent = document.getElementById('code-content');
-    
-    // Save the readonly state
-    const isReadOnly = codeContent.readOnly;
-    
-    // Make it editable temporarily
-    codeContent.readOnly = false;
-    
-    // Select the text
-    codeContent.focus();
-    codeContent.select();
-    
-    // Execute copy command
-    document.execCommand('copy');
-    
-    // Restore the readonly state
-    codeContent.readOnly = isReadOnly;
-    
-    // Show success message
-    const successMessage = document.getElementById('success-message');
-    successMessage.style.display = 'inline-block';
-    
-    setTimeout(function() {
-        successMessage.style.display = 'none';
-    }, 2000);
+/* ============================================
+   CSS Variables
+   ============================================ */
+:root {
+    --primary: #f59e0b;
+    --primary-light: #fbbf24;
+    --primary-dark: #d97706;
+    --primary-glow: rgba(245, 158, 11, 0.15);
+    --primary-subtle: rgba(245, 158, 11, 0.08);
+    --accent: #10b981;
+    --accent-light: #34d399;
+    --accent-glow: rgba(16, 185, 129, 0.15);
+    --bg-base: #0a0f1a;
+    --bg-elevated: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #243244;
+    --bg-input: #0f172a;
+    --bg-hover: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+    --border: #334155;
+    --border-light: #475569;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --error: #ef4444;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --success: #10b981;
+    --success-bg: rgba(16, 185, 129, 0.1);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 40px var(--primary-glow);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-full: 9999px;
+}*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+font-family: ‘Plus Jakarta Sans’, -apple-system, BlinkMacSystemFont, sans-serif;
+background: var(–bg-base);
+color: var(–text-primary);
+min-height: 100vh;
+line-height: 1.6;
+background-image: radial-gradient(ellipse 80% 50% at 50% -20%, var(–primary-subtle) 0%, transparent 50%);
+background-attachment: fixed;
 }
-    
-    // Generate customized code
-    function generateCode() {
-        // Get customization values
-        const emoji1 = document.getElementById('emoji1').value || '👍';
-        const emoji2 = document.getElementById('emoji2').value || '❤️';
-        const emoji3 = document.getElementById('emoji3').value || '🔥';
-        const emoji4 = document.getElementById('emoji4').value || '💡';
-        
-        const reaction1 = document.getElementById('reaction1').value || 'This is helpful';
-        const reaction2 = document.getElementById('reaction2').value || 'I love this';
-        const reaction3 = document.getElementById('reaction3').value || 'This is amazing';
-        const reaction4 = document.getElementById('reaction4').value || 'Very informative';
-        
-        const primaryColor = document.getElementById('primary-color').value || '#4361ee';
-        const position = document.getElementById('button-position').value || 'bottom-right';
-        
-        const popupHeading = document.getElementById('popup-heading').value || 'What do you think?';
-        const statsHeading = document.getElementById('stats-heading').value || 'Reaction Statistics';
-        const buttonText = document.getElementById('button-text').value || '👍';
-        
-        // Generate position CSS
-        let positionCSS = 'bottom: 20px; right: 20px;';
-        if (position === 'bottom-left') positionCSS = 'bottom: 20px; left: 20px;';
-        if (position === 'top-right') positionCSS = 'top: 20px; right: 20px;';
-        if (position === 'top-left') positionCSS = 'top: 20px; left: 20px;';
-        
-        // Generate code with customizations
-        const customCode = `<!-- 👍i Widget with Reactions and Stats -->
-<style>
-#thumbs-widget {
-    position: fixed;
-    ${positionCSS}
-    z-index: 9999;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.container { max-width: 640px; margin: 0 auto; padding: 24px; }
+/* Header */
+header {
+text-align: center;
+padding: 40px 20px;
+margin-bottom: 32px;
+position: relative;
 }
-
-#thumbs-button {
-    width: 70px;
-    height: 70px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    cursor: pointer;
-    position: relative;
+header::after {
+content: ‘’;
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 120px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–border), transparent);
 }
-
-#i-indicator {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 28px;
-    height: 28px;
-    background: ${primaryColor};
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: bold;
+.logo { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+.logo span {
+background: linear-gradient(135deg, var(–primary-light), var(–primary), var(–primary-dark));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
 }
-
-.thumbs-popup {
-    position: absolute;
-    ${position.includes('top') ? 'top: 80px;' : 'bottom: 80px;'}
-    ${position.includes('left') ? 'left: 0;' : 'right: 0;'}
-    background: white;
-    width: 320px;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    display: none;
+.tagline { color: var(–text-secondary); font-size: 1rem; font-weight: 500; }
+/* Steps */
+.steps-indicator { display: flex; justify-content: center; align-items: center; margin-bottom: 32px; padding: 0 40px; }
+.step-dot {
+width: 44px; height: 44px;
+border-radius: var(–radius-full);
+background: var(–bg-card);
+border: 2px solid var(–border);
+display: flex; align-items: center; justify-content: center;
+font-weight: 700; font-size: 0.9rem;
+color: var(–text-muted);
+transition: all var(–transition-base);
+z-index: 1;
 }
-
-.popup-title {
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 18px;
+.step-dot.active {
+background: linear-gradient(135deg, var(–primary), var(–primary-dark));
+border-color: var(–primary);
+color: var(–bg-base);
+box-shadow: var(–shadow-glow), var(–shadow-md);
+transform: scale(1.05);
 }
-
-.reaction-option {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    margin-bottom: 12px;
-    background: #f8f9fa;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+.step-dot.completed { background: var(–accent); border-color: var(–accent); color: white; }
+.step-line { flex: 1; max-width: 80px; height: 3px; background: var(–border); margin: 0 -2px; border-radius: var(–radius-full); }
+.step-line.completed { background: var(–accent); }
+/* Sections */
+.section { display: none; animation: fadeIn 0.4s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+.section-title::first-letter { color: var(–primary); }
+.section-desc { color: var(–text-secondary); margin-bottom: 24px; }
+/* Cards */
+.card {
+background: var(–bg-card);
+border: 1px solid var(–border-subtle);
+border-radius: var(–radius-lg);
+padding: 24px;
+margin-bottom: 24px;
+box-shadow: var(–shadow-card);
+transition: all var(–transition-base);
+position: relative;
 }
-
-.reaction-option:hover {
-    background: #e9ecef;
-    transform: translateY(-2px);
-    transition: all 0.2s ease;
+.card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+border-radius: var(–radius-lg) var(–radius-lg) 0 0;
 }
-
-.emoji {
-    font-size: 28px;
-    margin-right: 15px;
+.card:hover { border-color: var(–border); transform: translateY(-1px); }
+.card-title {
+font-size: 1rem; font-weight: 600;
+margin-bottom: 16px;
+display: flex; align-items: center; gap: 8px;
 }
-
-.thumbs-close-button {
-    color: ${primaryColor};
-    text-align: center;
-    cursor: pointer;
-    margin-top: 15px;
-    font-size: 16px;
+.card-title::before { content: ‘’; width: 3px; height: 18px; background: var(–primary); border-radius: var(–radius-full); }
+/* Form Elements */
+label { display: block; color: var(–text-secondary); font-size: 0.85rem; margin-bottom: 4px; font-weight: 500; }
+input[type=“text”], input[type=“url”], input[type=“email”], input[type=“password”], textarea {
+width: 100%;
+background: var(–bg-input);
+border: 1px solid var(–border);
+border-radius: var(–radius-md);
+padding: 14px 16px;
+color: var(–text-primary);
+font-family: ‘Plus Jakarta Sans’, sans-serif;
+font-size: 1rem;
+transition: all var(–transition-fast);
 }
-
-.stats-item {
-    margin: 15px 0;
-    font-size: 16px;
+input::placeholder, textarea::placeholder { color: var(–text-dim); }
+input:focus, textarea:focus { outline: none; border-color: var(–primary); box-shadow: 0 0 0 3px var(–primary-glow); }
+textarea { min-height: 200px; resize: vertical; }
+.input-with-clear, .textarea-with-clear { position: relative; }
+.input-with-clear input { padding-right: 44px; }
+.clear-btn {
+position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+background: var(–bg-hover); border: none; color: var(–text-muted);
+width: 26px; height: 26px; border-radius: var(–radius-full);
+cursor: pointer; font-size: 1.1rem;
+display: flex; align-items: center; justify-content: center;
+transition: all var(–transition-fast); opacity: 0.7;
 }
-
-.progress-bar {
-    height: 10px;
-    background: #e9ecef;
-    border-radius: 5px;
-    margin-top: 8px;
-    overflow: hidden;
+.clear-btn:hover { background: var(–error); color: white; opacity: 1; }
+.clear-btn.textarea-clear { top: 14px; transform: none; }
+.input-help { color: var(–text-muted); font-size: 0.8rem; margin-top: 8px; }
+.input-help a { color: var(–primary); text-decoration: none; font-weight: 500; }
+.checkbox-row {
+display: flex; align-items: center; gap: 12px;
+margin-top: 16px; padding: 14px 16px;
+background: var(–bg-input); border: 1px solid var(–border-subtle);
+border-radius: var(–radius-md); cursor: pointer;
+transition: all var(–transition-fast);
 }
-
-.progress {
-    height: 100%;
-    background: ${primaryColor};
-    width: 0%;
-    transition: width 0.5s ease-out;
+.checkbox-row:hover { border-color: var(–border); background: var(–bg-hover); }
+.checkbox-row input[type=“checkbox”] { width: 20px; height: 20px; accent-color: var(–primary); }
+.checkbox-row span { color: var(–text-secondary); font-size: 0.9rem; font-weight: 500; }
+/* Buttons */
+.btn {
+display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+padding: 14px 24px; border-radius: var(–radius-md);
+font-family: ‘Plus Jakarta Sans’, sans-serif;
+font-size: 0.95rem; font-weight: 600;
+cursor: pointer; border: none; width: 100%;
+transition: all var(–transition-fast);
+position: relative; overflow: hidden;
 }
-
-.stats-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+.btn::before {
+content: ‘’; position: absolute; top: 0; left: -100%;
+width: 100%; height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+transition: left 0.5s ease;
 }
-
-.stats-code-button {
-    background: ${primaryColor};
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
+.btn:hover::before { left: 100%; }
+.btn-primary {
+background: linear-gradient(135deg, var(–primary), var(–primary-dark));
+color: var(–bg-base);
+box-shadow: var(–shadow-md), 0 0 20px var(–primary-glow);
 }
-
-/* Mobile Optimization */
+.btn-primary:hover { transform: translateY(-2px); box-shadow: var(–shadow-lg), 0 0 30px var(–primary-glow); }
+.btn-secondary { background: var(–bg-card); color: var(–text-primary); border: 1px solid var(–border); }
+.btn-secondary:hover { background: var(–bg-hover); border-color: var(–border-light); }
+.btn-success {
+background: linear-gradient(135deg, var(–accent), #059669);
+color: white;
+box-shadow: var(–shadow-md), 0 0 20px var(–accent-glow);
+}
+.btn-success:hover { transform: translateY(-2px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-small { padding: 10px 18px; font-size: 0.85rem; width: auto; }
+.btn-row { display: flex; gap: 12px; margin-top: 24px; }
+.btn-row .btn { flex: 1; }
+.section-actions { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+/* API Key */
+.api-key-wrap { position: relative; }
+.api-key-wrap input { padding-right: 50px; font-family: ‘JetBrains Mono’, monospace; font-size: 0.9rem; }
+.api-key-toggle {
+position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+background: none; border: none; color: var(–text-muted);
+cursor: pointer; font-size: 1.1rem;
+}
+.api-key-toggle:hover { color: var(–text-primary); }
+/* Edit Sections */
+.edit-section {
+background: var(–bg-input);
+border: 1px solid var(–border-subtle);
+border-radius: var(–radius-md);
+margin-bottom: 12px; overflow: hidden;
+transition: all var(–transition-fast);
+}
+.edit-section:hover { border-color: var(–border); }
+.edit-section-head {
+display: flex; align-items: center; justify-content: space-between;
+padding: 14px 18px; background: var(–bg-card);
+cursor: pointer; user-select: none;
+}
+.edit-section-head:hover { background: var(–bg-card-hover); }
+.edit-section-head h4 { font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.edit-section-head span:last-child { color: var(–text-muted); font-size: 0.8rem; }
+.edit-section-body { display: none; padding: 16px 18px 18px; border-top: 1px solid var(–border-subtle); }
+.edit-section-body.show { display: block; animation: slideDown 0.25s ease; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.edit-field { margin-bottom: 14px; }
+.edit-field:last-child { margin-bottom: 0; }
+.edit-field textarea { min-height: 120px; }
+.timestamp-badge {
+display: inline-flex; background: var(–bg-hover); color: var(–primary);
+font-size: 0.75rem; padding: 3px 10px; border-radius: var(–radius-sm);
+font-family: ‘JetBrains Mono’, monospace; font-weight: 500;
+}
+/* Color Picker */
+.color-row { display: flex; align-items: center; gap: 14px; }
+.color-picker { width: 60px; height: 42px; border: none; border-radius: var(–radius-md); cursor: pointer; background: none; padding: 0; }
+.color-picker::-webkit-color-swatch-wrapper { padding: 0; }
+.color-picker::-webkit-color-swatch { border: 2px solid var(–border); border-radius: var(–radius-md); }
+.color-preview { width: 42px; height: 42px; border-radius: var(–radius-md); border: 2px solid var(–border); }
+/* Loading */
+.loading {
+display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(10, 15, 26, 0.97); z-index: 1000;
+align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+backdrop-filter: blur(8px);
+}
+.loading.show { display: flex; }
+.spinner { width: 48px; height: 48px; border: 3px solid var(–border); border-top-color: var(–primary); border-radius: var(–radius-full); animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { color: var(–text-secondary); text-align: center; max-width: 300px; font-weight: 500; }
+.loading-steps { margin-top: 24px; text-align: left; min-width: 200px; }
+.loading-step { color: var(–text-muted); font-size: 0.85rem; padding: 6px 0; display: flex; align-items: center; gap: 10px; }
+.loading-step::before { content: ‘○’; font-size: 0.7rem; }
+.loading-step.active { color: var(–primary); }
+.loading-step.active::before { content: ‘◉’; animation: pulse 1s ease infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.loading-step.done { color: var(–accent); }
+.loading-step.done::before { content: ‘✓’; }
+/* Preview Modal */
+.preview-overlay {
+display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(10, 15, 26, 0.95); z-index: 1000;
+align-items: center; justify-content: center; padding: 24px;
+backdrop-filter: blur(8px);
+}
+.preview-overlay.show { display: flex; }
+.preview-modal {
+background: var(–bg-card); border: 1px solid var(–border);
+border-radius: var(–radius-lg); width: 100%; max-width: 940px;
+height: 90vh; display: flex; flex-direction: column;
+overflow: hidden; box-shadow: var(–shadow-lg);
+}
+.preview-header {
+display: flex; align-items: center; justify-content: space-between;
+padding: 16px 24px; border-bottom: 1px solid var(–border);
+background: var(–bg-hover);
+}
+.preview-header h3 { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.preview-header h3::before { content: ‘👁️’; }
+.preview-close {
+background: var(–bg-card); border: 1px solid var(–border);
+color: var(–text-muted); font-size: 1.3rem; cursor: pointer;
+padding: 6px 12px; border-radius: var(–radius-sm);
+}
+.preview-close:hover { color: var(–text-primary); background: var(–bg-hover); }
+.preview-frame { flex: 1; width: 100%; border: none; background: var(–bg-base); }
+/* Footer */
+footer {
+text-align: center; padding: 32px 24px; margin-top: 32px;
+color: var(–text-muted); font-size: 0.85rem; position: relative;
+}
+footer::before {
+content: ‘’; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+width: 80px; height: 1px;
+background: linear-gradient(90deg, transparent, var(–border), transparent);
+}
+footer a { color: var(–primary); text-decoration: none; font-weight: 500; }
+/* Messages */
+.error-msg { background: var(–error-bg); border: 1px solid var(–error); color: var(–error); padding: 14px 18px; border-radius: var(–radius-md); margin-bottom: 16px; font-size: 0.9rem; }
+.success-msg { background: var(–success-bg); border: 1px solid var(–success); color: var(–success); padding: 14px 18px; border-radius: var(–radius-md); margin-bottom: 16px; font-size: 0.9rem; }
+/* Mobile */
+@media (max-width: 600px) {
+.container { padding: 16px; }
+.logo { font-size: 1.8rem; }
+.section-title { font-size: 1.3rem; }
+.step-dot { width: 38px; height: 38px; font-size: 0.85rem; }
+.step-line { max-width: 50px; }
+.card { padding: 20px; }
+.btn-row { flex-direction: column; }
+.btn-row .btn { flex: none; }
+}
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(–bg-base); }
+::-webkit-scrollbar-thumb { background: var(–border); border-radius: var(–radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(–border-light); }
+/* Chat Widget */
+.chat-toggle {
+position: fixed; bottom: 24px; right: 24px;
+width: 60px; height: 60px; border-radius: var(–radius-full);
+background: linear-gradient(135deg, var(–primary), var(–primary-dark));
+border: none; cursor: pointer;
+box-shadow: var(–shadow-lg), 0 0 30px var(–primary-glow);
+z-index: 1000; display: flex; align-items: center; justify-content: center;
+transition: all var(–transition-base);
+}
+.chat-toggle:hover { transform: scale(1.08); }
+.chat-toggle-icon { font-size: 1.6rem; }
+.chat-badge {
+position: absolute; top: -4px; right: -4px;
+min-width: 20px; height: 20px; padding: 0 6px;
+background: var(–error); border-radius: var(–radius-full);
+font-size: 0.7rem; font-weight: 700; color: white;
+display: flex; align-items: center; justify-content: center;
+}
+.chat-badge.hidden { display: none; }
+.chat-window {
+position: fixed; bottom: 100px; right: 24px;
+width: 380px; max-width: calc(100vw - 48px);
+height: 500px; max-height: calc(100vh - 140px);
+background: var(–bg-card); border: 1px solid var(–border);
+border-radius: var(–radius-lg); box-shadow: var(–shadow-lg);
+z-index: 999; display: flex; flex-direction: column; overflow: hidden;
+opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95);
+transition: all var(–transition-base);
+}
+.chat-window.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+.chat-header {
+display: flex; align-items: center; justify-content: space-between;
+padding: 14px 16px; background: var(–bg-hover);
+border-bottom: 1px solid var(–border);
+}
+.chat-header-info { display: flex; align-items: center; gap: 12px; }
+.chat-avatar {
+width: 40px; height: 40px;
+background: linear-gradient(135deg, var(–primary), var(–primary-dark));
+border-radius: var(–radius-md);
+display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.chat-header-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+.chat-header-text span { font-size: 0.75rem; color: var(–accent); display: flex; align-items: center; gap: 4px; }
+.chat-header-text span::before { content: ‘’; width: 6px; height: 6px; background: var(–accent); border-radius: var(–radius-full); }
+.chat-close {
+background: var(–bg-card); border: 1px solid var(–border);
+color: var(–text-muted); width: 32px; height: 32px;
+border-radius: var(–radius-sm); cursor: pointer;
+display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.chat-close:hover { background: var(–bg-hover); color: var(–text-primary); }
+.chat-step-context {
+display: flex; align-items: center; gap: 8px;
+padding: 10px 16px; background: var(–primary-subtle);
+border-bottom: 1px solid var(–border-subtle);
+font-size: 0.8rem; color: var(–primary);
+}
+.chat-step-context::before { content: ‘📍’; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.chat-message { display: flex; gap: 10px; max-width: 90%; animation: msgIn 0.3s ease; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.chat-message.assistant { align-self: flex-start; }
+.chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
+.message-avatar { width: 32px; height: 32px; border-radius: var(–radius-sm); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+.chat-message.assistant .message-avatar { background: linear-gradient(135deg, var(–primary), var(–primary-dark)); }
+.chat-message.user .message-avatar { background: var(–bg-hover); }
+.message-content { padding: 12px 16px; border-radius: var(–radius-md); font-size: 0.9rem; line-height: 1.5; }
+.chat-message.assistant .message-content { background: var(–bg-input); border: 1px solid var(–border-subtle); color: var(–text-secondary); border-top-left-radius: var(–radius-sm); }
+.chat-message.user .message-content { background: linear-gradient(135deg, var(–primary), var(–primary-dark)); color: var(–bg-base); border-top-right-radius: var(–radius-sm); }
+.message-content strong { color: var(–text-primary); font-weight: 600; }
+.chat-message.user .message-content strong { color: var(–bg-base); }
+.typing-indicator { display: flex; gap: 4px; padding: 12px 16px; background: var(–bg-input); border: 1px solid var(–border-subtle); border-radius: var(–radius-md); border-top-left-radius: var(–radius-sm); width: fit-content; }
+.typing-indicator span { width: 8px; height: 8px; background: var(–text-muted); border-radius: var(–radius-full); animation: bounce 1.4s ease infinite; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+.chat-quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-top: 1px solid var(–border-subtle); background: var(–bg-elevated); }
+.quick-reply {
+padding: 7px 12px; background: var(–bg-card); border: 1px solid var(–border);
+border-radius: var(–radius-full); color: var(–text-secondary);
+font-size: 0.78rem; font-family: ‘Plus Jakarta Sans’, sans-serif;
+cursor: pointer; white-space: nowrap; transition: all var(–transition-fast);
+}
+.quick-reply:hover { background: var(–bg-hover); border-color: var(–primary); color: var(–primary); }
+.chat-input-area { display: flex; gap: 10px; padding: 12px 16px; border-top: 1px solid var(–border); background: var(–bg-card); }
+.chat-input {
+flex: 1; background: var(–bg-input); border: 1px solid var(–border);
+border-radius: var(–radius-md); padding: 10px 14px;
+color: var(–text-primary); font-family: ‘Plus Jakarta Sans’, sans-serif;
+font-size: 0.9rem; resize: none; min-height: 42px; max-height: 100px;
+}
+.chat-input:focus { outline: none; border-color: var(–primary); box-shadow: 0 0 0 3px var(–primary-glow); }
+.chat-send {
+width: 42px; height: 42px;
+background: linear-gradient(135deg, var(–primary), var(–primary-dark));
+border: none; border-radius: var(–radius-md); color: var(–bg-base);
+cursor: pointer; display: flex; align-items: center; justify-content: center;
+font-size: 1.1rem; transition: all var(–transition-fast);
+}
+.chat-send:hover { transform: scale(1.05); }
 @media (max-width: 480px) {
-    .thumbs-popup {
-        width: 280px;
-    }
-    
-    .reaction-option {
-        padding: 10px 14px;
-    }
-    
-    .emoji {
-        font-size: 24px;
-    }
+.chat-toggle { bottom: 16px; right: 16px; width: 54px; height: 54px; }
+.chat-window { bottom: 86px; right: 16px; left: 16px; width: auto; max-width: none; height: calc(100vh - 120px); }
 }
 </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><span>i</span>Tabs</div>
+            <p class="tagline">People learn easier and act</p>
+        </header>
 
-<div id="thumbs-widget">
-    <div id="thumbs-button" onclick="toggleThumbs()">
-        ${buttonText}
-        <div id="i-indicator">i</div>
+    <div class="steps-indicator">
+        <div class="step-dot active" id="dot1">1</div>
+        <div class="step-line" id="line1"></div>
+        <div class="step-dot" id="dot2">2</div>
+        <div class="step-line" id="line2"></div>
+        <div class="step-dot" id="dot3">3</div>
     </div>
     
-    <div id="reactions-popup" class="thumbs-popup">
-        <div class="popup-title">${popupHeading}</div>
+    <!-- Step 1: API Key -->
+    <div class="section active" id="step1">
+        <h2 class="section-title">Setup</h2>
+        <p class="section-desc">One-time setup. Your key stays in your browser.</p>
         
-        <div class="reaction-option" onclick="saveReaction('reaction1')">
-            <span class="emoji">${emoji1}</span> ${reaction1}
-        </div>
-        
-        <div class="reaction-option" onclick="saveReaction('reaction2')">
-            <span class="emoji">${emoji2}</span> ${reaction2}
-        </div>
-        
-        <div class="reaction-option" onclick="saveReaction('reaction3')">
-            <span class="emoji">${emoji3}</span> ${reaction3}
-        </div>
-        
-        <div class="reaction-option" onclick="saveReaction('reaction4')">
-            <span class="emoji">${emoji4}</span> ${reaction4}
-        </div>
-        
-        <div class="thumbs-close-button" onclick="closeThumbsPopups()">
-            Close
+        <div class="card">
+            <div class="card-title">🔑 Gemini API Key</div>
+            <div class="api-key-wrap">
+                <input type="password" id="apiKey" placeholder="Paste your API key">
+                <button class="api-key-toggle" onclick="toggleKey()">👁️</button>
+            </div>
+            <p class="input-help">Free from Google → <a href="https://aistudio.google.com/app/apikey" target="_blank">Get your key</a></p>
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="saveKeyAndContinue()">Save & Continue →</button>
+            </div>
         </div>
     </div>
     
-    <div id="stats-popup" class="thumbs-popup">
-        <div class="popup-title">${statsHeading}</div>
-        <div id="stats-content">
-            <p>No reactions yet</p>
+    <!-- Step 2: Content Input -->
+    <div class="section" id="step2">
+        <h2 class="section-title">Your Content</h2>
+        <p class="section-desc">Paste your source. AI will organise it into an iTabs guide.</p>
+        
+        <div class="card">
+            <div class="card-title">🎬 YouTube Video (optional)</div>
+            <div class="input-with-clear">
+                <input type="url" id="youtubeUrl" placeholder="https://youtube.com/watch?v=...">
+                <button class="clear-btn" onclick="clearField('youtubeUrl')" title="Clear">×</button>
+            </div>
+            <p class="input-help">Paste the video URL to embed it in your guide</p>
+            <button class="btn btn-secondary btn-small" onclick="getTranscript()" style="margin-top: 10px;">📄 Get Transcript</button>
+            <label class="checkbox-row">
+                <input type="checkbox" id="embedVideo" checked>
+                <span>Embed video at top of guide</span>
+            </label>
         </div>
-        <div class="stats-buttons">
-            <button class="stats-code-button" onclick="openCodePopup()">Get Code</button>
-            <div class="thumbs-close-button" onclick="closeThumbsPopups()">Close</div>
+        
+        <div class="card">
+            <div class="card-title">📝 Transcript / Content</div>
+            <div class="textarea-with-clear">
+                <textarea id="rawContent" placeholder="Paste your transcript here..."></textarea>
+                <button class="clear-btn textarea-clear" onclick="clearField('rawContent')" title="Clear">×</button>
+            </div>
+            <p class="input-help">Tip: Timestamps like [00:01:23] will link to video moments</p>
         </div>
+        
+        <div class="card">
+            <div class="card-title">🎯 Quick Context</div>
+            <div class="edit-field">
+                <label>Who is this guide for?</label>
+                <input type="text" id="audience" placeholder="e.g. Training clients, Students, My own reference">
+            </div>
+            <div class="edit-field">
+                <label>What should they be able to DO after reading?</label>
+                <input type="text" id="goal" placeholder="e.g. Set up Claude Code, Pass their RSA exam">
+            </div>
+        </div>
+        
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="goBack()">← Back</button>
+            <button class="btn btn-primary" onclick="processContent()">Create iTabs →</button>
+        </div>
+    </div>
+    
+    <!-- Step 3: Editor & Download -->
+    <div class="section" id="step3">
+        <h2 class="section-title">Edit & Download</h2>
+        <p class="section-desc">Review, tweak, then download your iTabs guide.</p>
+        <div id="errorMsg"></div>
+        
+        <div class="card">
+            <div class="card-title">🏷️ Branding</div>
+            <div class="edit-field">
+                <label>Guide Title</label>
+                <input type="text" id="brandName" placeholder="My Guide">
+            </div>
+            <div class="edit-field">
+                <label>Prepared For (optional)</label>
+                <input type="text" id="clientName" placeholder="Client or company name">
+            </div>
+            <div class="edit-field">
+                <label>Brand Color</label>
+                <div class="color-row">
+                    <input type="color" class="color-picker" id="brandColor" value="#f59e0b">
+                    <div class="color-preview" id="colorPrev" style="background:#f59e0b;"></div>
+                </div>
+            </div>
+            <div class="edit-field">
+                <label>Contact Email (optional)</label>
+                <input type="email" id="contactEmail" placeholder="hello@example.com">
+            </div>
+        </div>
+        
+        <div id="sectionsWrap"></div>
+        
+        <div class="section-actions">
+            <button class="btn btn-secondary btn-small" onclick="expandAll()">Expand All</button>
+            <button class="btn btn-secondary btn-small" onclick="collapseAll()">Collapse All</button>
+            <button class="btn btn-secondary btn-small" onclick="addSection()">+ Add Section</button>
+        </div>
+        
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="goBack()">← Back</button>
+            <button class="btn btn-primary" onclick="showPreview()">👁️ Preview</button>
+            <button class="btn btn-success" onclick="download()">⬇️ Download</button>
+        </div>
+    </div>
+    
+    <footer>Built by <a href="https://itabs.ai">iTabs</a> • People learn easier and act</footer>
+</div>
+
+<!-- Preview Modal -->
+<div class="preview-overlay" id="previewOverlay" onclick="closePreview(event)">
+    <div class="preview-modal">
+        <div class="preview-header">
+            <h3>Preview</h3>
+            <button class="preview-close" onclick="closePreview()">&times;</button>
+        </div>
+        <iframe id="previewFrame" class="preview-frame"></iframe>
     </div>
 </div>
 
+<div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingTxt">Processing your content...</div>
+    <div class="loading-steps" id="loadingSteps"></div>
+</div>
+
+<!-- Chat Widget -->
+<button class="chat-toggle" id="chatToggle"><span class="chat-toggle-icon">💬</span><span class="chat-badge" id="chatBadge">1</span></button>
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <div class="chat-avatar">🤖</div>
+            <div class="chat-header-text"><h4>iTabs Assistant</h4><span>Online</span></div>
+        </div>
+        <button class="chat-close" id="chatClose">×</button>
+    </div>
+    <div class="chat-step-context" id="chatContext">Step 1: Setup</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-quick-replies" id="chatQuickReplies"></div>
+    <div class="chat-input-area">
+        <textarea class="chat-input" id="chatInput" placeholder="Ask me anything..." rows="1"></textarea>
+        <button class="chat-send" id="chatSend">➤</button>
+    </div>
+</div>
+
+
 <script>
-// Widget data
-var reactions = {
-    reaction1: 0,
-    reaction2: 0,
-    reaction3: 0,
-    reaction4: 0
-};
+// ============================================
+// STATE
+// ============================================
+let step = 1;
+let apiKey = '';
+let sections = [];
+let youtubeVideoId = '';
 
-// Reaction labels for display
-var reactionLabels = {
-    reaction1: "${emoji1} ${reaction1}",
-    reaction2: "${emoji2} ${reaction2}",
-    reaction3: "${emoji3} ${reaction3}",
-    reaction4: "${emoji4} ${reaction4}"
-};
+// Chat state
+let chatOpen = false;
+let hasUnread = true;
 
-// Try to load saved data
-try {
-    var savedReactions = localStorage.getItem('thumbs-widget-reactions');
-    if (savedReactions) {
-        reactions = JSON.parse(savedReactions);
+// ============================================
+// INIT
+// ============================================
+window.onload = function() {
+    const savedKey = localStorage.getItem('itabs_gemini_key');
+    if (savedKey) {
+        apiKey = savedKey;
+        document.getElementById('apiKey').value = savedKey;
     }
-} catch(e) {
-    console.log('Could not load saved reactions');
-}
+    initChat();
+};
 
-// Toggle reactions popup
-function toggleThumbs() {
-    closeThumbsPopups();
-    document.getElementById('reactions-popup').style.display = 'block';
-}
+// ============================================
+// NAVIGATION
+// ============================================
+function goToStep(n) { step = n; updateUI(); }
+function goBack() { step--; updateUI(); }
 
-// Save reaction and show stats
-function saveReaction(type) {
-    // Increment the selected reaction type
-    reactions[type]++;
+function updateUI() {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
     
-    // Save to localStorage
+    for (let i = 1; i <= 3; i++) {
+        const dot = document.getElementById('dot' + i);
+        const line = document.getElementById('line' + (i-1));
+        if (i < step) {
+            dot.className = 'step-dot completed';
+            dot.textContent = '✓';
+            if (line) line.classList.add('completed');
+        } else if (i === step) {
+            dot.className = 'step-dot active';
+            dot.textContent = i;
+        } else {
+            dot.className = 'step-dot';
+            dot.textContent = i;
+        }
+    }
+    updateChatContext();
+}
+
+// ============================================
+// API KEY
+// ============================================
+function toggleKey() {
+    const inp = document.getElementById('apiKey');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function saveKeyAndContinue() {
+    apiKey = document.getElementById('apiKey').value.trim();
+    if (!apiKey) { alert('Please enter your Gemini API key'); return; }
+    localStorage.setItem('itabs_gemini_key', apiKey);
+    step = 2;
+    updateUI();
+}
+
+// ============================================
+// UTILITIES
+// ============================================
+function clearField(id) { document.getElementById(id).value = ''; document.getElementById(id).focus(); }
+
+function extractVideoId(url) {
+    if (!url) return '';
+    const patterns = [/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s?]+)/, /^([a-zA-Z0-9_-]{11})$/];
+    for (const p of patterns) { const m = url.match(p); if (m) return m[1]; }
+    return '';
+}
+
+function getTranscript() {
+    const url = document.getElementById('youtubeUrl').value.trim();
+    const vid = extractVideoId(url);
+    if (!vid) { alert('Please enter a YouTube URL first'); return; }
+    window.open('https://youtubetotranscript.com/transcript?v=' + vid, '_blank');
+}
+
+function expandAll() { document.querySelectorAll('.edit-section-body').forEach(b => b.classList.add('show')); }
+function collapseAll() { document.querySelectorAll('.edit-section-body').forEach(b => b.classList.remove('show')); }
+
+// ============================================
+// PROCESS CONTENT
+// ============================================
+async function processContent() {
+    const rawContent = document.getElementById('rawContent').value.trim();
+    const youtubeUrl = document.getElementById('youtubeUrl').value.trim();
+    const audience = document.getElementById('audience').value.trim() || 'General learners';
+    const goal = document.getElementById('goal').value.trim() || 'Understand and apply the content';
+    
+    if (!rawContent) { alert('Please paste your transcript or content'); return; }
+    
+    youtubeVideoId = extractVideoId(youtubeUrl);
+    
+    showLoading(['Reading your content...', 'Identifying key topics...', 'Extracting timestamps...', 'Creating sections...', 'Generating key points...']);
+    
     try {
-        localStorage.setItem('thumbs-widget-reactions', JSON.stringify(reactions));
-    } catch(e) {
-        console.log('Could not save reaction');
+        const prompt = buildPrompt(rawContent, audience, goal, !!youtubeVideoId);
+        const result = await callGemini(prompt);
+        sections = parseGeminiResponse(result);
+        if (sections.length > 0) document.getElementById('brandName').value = sections[0].title || 'My Guide';
+        hideLoading();
+        step = 3;
+        updateUI();
+        populateEditor();
+    } catch (error) {
+        hideLoading();
+        alert('Error: ' + error.message + '\n\nPlease check your API key.');
     }
-    
-    closeThumbsPopups();
-    updateStats();
-    document.getElementById('stats-popup').style.display = 'block';
 }
 
-// Close all popups
-function closeThumbsPopups() {
-    document.getElementById('reactions-popup').style.display = 'none';
-    document.getElementById('stats-popup').style.display = 'none';
+function buildPrompt(content, audience, goal, hasVideo) {
+    return `You are an expert instructional designer. Turn content into TEACHABLE guides.
+
+CORE PRINCIPLE: Someone should open this in 6 months and take action within 30 seconds.
+
+AUDIENCE: ${audience}
+GOAL: ${goal}
+HAS VIDEO: ${hasVideo ? 'Yes - extract timestamps [HH:MM:SS]' : 'No'}
+
+CONTENT:
+${content}
+
+CREATE 4-6 SECTIONS with:
+1. title: Clear title (2-6 words)
+2. badge: "Concept" | "How-To" | "Why It Matters" | "Example" | "Warning" | "Action Step" | "Key Fact"
+3. content: TEACH in 3-5 sentences (what it IS, why it MATTERS, HOW to use it)
+4. keyPoint: ONE memorable takeaway
+5. timestamp: ${hasVideo ? '[HH:MM:SS] where topic starts' : 'Leave empty'}
+
+RESPOND IN JSON:
+{"suggestedTitle": "Guide title", "sections": [{"title": "", "badge": "", "content": "", "keyPoint": "", "timestamp": ""}]}
+
+Only valid JSON. No markdown.`;
 }
 
-// Update statistics display
-function updateStats() {
-    var total = reactions.reaction1 + reactions.reaction2 + reactions.reaction3 + reactions.reaction4;
-    var statsContent = document.getElementById('stats-content');
-    
-    if (total === 0) {
-        statsContent.innerHTML = '<p>No reactions yet</p>';
-        return;
-    }
-    
-    var reaction1Percent = Math.round((reactions.reaction1 / total) * 100) || 0;
-    var reaction2Percent = Math.round((reactions.reaction2 / total) * 100) || 0;
-    var reaction3Percent = Math.round((reactions.reaction3 / total) * 100) || 0;
-    var reaction4Percent = Math.round((reactions.reaction4 / total) * 100) || 0;
-    
-    var html = '<p><strong>Total reactions:</strong> ' + total + '</p>';
-    
-    html += '<div class="stats-item">';
-    html += '<div>' + reactionLabels.reaction1 + ': ' + reactions.reaction1 + ' (' + reaction1Percent + '%)</div>';
-    html += '<div class="progress-bar"><div class="progress" style="width:' + reaction1Percent + '%"></div></div>';
-    html += '</div>';
-    
-    html += '<div class="stats-item">';
-    html += '<div>' + reactionLabels.reaction2 + ': ' + reactions.reaction2 + ' (' + reaction2Percent + '%)</div>';
-    html += '<div class="progress-bar"><div class="progress" style="width:' + reaction2Percent + '%"></div></div>';
-    html += '</div>';
-    
-    html += '<div class="stats-item">';
-    html += '<div>' + reactionLabels.reaction3 + ': ' + reactions.reaction3 + ' (' + reaction3Percent + '%)</div>';
-    html += '<div class="progress-bar"><div class="progress" style="width:' + reaction3Percent + '%"></div></div>';
-    html += '</div>';
-    
-    html += '<div class="stats-item">';
-    html += '<div>' + reactionLabels.reaction4 + ': ' + reactions.reaction4 + ' (' + reaction4Percent + '%)</div>';
-    html += '<div class="progress-bar"><div class="progress" style="width:' + reaction4Percent + '%"></div></div>';
-    html += '</div>';
-    
-    statsContent.innerHTML = html;
-}
-<\/script>`;
-
-        document.getElementById('code-content').value = customCode;
-    }
-
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        updateStats();
+async function callGemini(prompt) {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 4096 } })
     });
+    if (!response.ok) { const err = await response.json(); throw new Error(err.error?.message || 'API failed'); }
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text;
+}
+
+function parseGeminiResponse(text) {
+    try {
+        let cleaned = text.trim();
+        if (cleaned.startsWith('```')) cleaned = cleaned.replace(/```json?\n?/g, '').replace(/```\n?/g, '');
+        const data = JSON.parse(cleaned);
+        if (data.suggestedTitle) document.getElementById('brandName').value = data.suggestedTitle;
+        return data.sections || [];
+    } catch (e) {
+        return [{ title: 'Overview', badge: 'Start', content: 'Could not parse. Edit manually.', keyPoint: 'Edit this section.', timestamp: '' }];
+    }
+}
+
+// ============================================
+// EDITOR
+// ============================================
+function populateEditor() {
+    const wrap = document.getElementById('sectionsWrap');
+    wrap.innerHTML = '';
+    sections.forEach((s, i) => addSectionUI(s, i, true));
+}
+
+function addSectionUI(s, i, open = false) {
+    const wrap = document.getElementById('sectionsWrap');
+    const div = document.createElement('div');
+    div.className = 'edit-section';
+    const ts = s.timestamp ? `<span class="timestamp-badge">${s.timestamp}</span>` : '';
+    div.innerHTML = `
+        <div class="edit-section-head" onclick="toggleSec(this)">
+            <h4>Section ${i + 1}: <span class="sec-title">${s.title || 'New'}</span>${ts}</h4>
+            <span>▼</span>
+        </div>
+        <div class="edit-section-body ${open ? 'show' : ''}">
+            <div class="edit-field"><label>Title</label><input type="text" class="sec-title-in" value="${esc(s.title || '')}" onchange="updateSecTitle(this)"></div>
+            <div class="edit-field"><label>Badge</label><input type="text" class="sec-badge-in" value="${esc(s.badge || '')}" placeholder="e.g. Overview, How-To"></div>
+            <div class="edit-field"><label>Timestamp</label><input type="text" class="sec-timestamp-in" value="${esc(s.timestamp || '')}" placeholder="00:01:23"></div>
+            <div class="edit-field"><label>Content</label><textarea class="sec-content-in" rows="6">${esc(s.content || '')}</textarea></div>
+
+        <div class="edit-field"><label>Key Point</label><input type="text" class="sec-key-in" value="${esc(s.keyPoint || '')}" placeholder="Main takeaway"></div>
+        <button class="btn btn-secondary" onclick="removeSec(this)" style="margin-top:10px;padding:8px 16px;font-size:0.85rem;color:var(--error);">Remove Section</button>
+    </div>`;
+wrap.appendChild(div);
+
+
+}
+function esc(str) { return str.replace(/&/g, ‘&’).replace(/</g, ‘<’).replace(/>/g, ‘>’).replace(/”/g, ‘"’); }
+function addSection() { addSectionUI({ title: ‘New Section’, badge: ‘’, content: ‘’, keyPoint: ‘’, timestamp: ‘’ }, document.querySelectorAll(’.edit-section’).length, true); }
+function removeSec(btn) { if (confirm(‘Remove this section?’)) btn.closest(’.edit-section’).remove(); }
+function toggleSec(head) { head.nextElementSibling.classList.toggle(‘show’); }
+function updateSecTitle(inp) { inp.closest(’.edit-section’).querySelector(’.sec-title’).textContent = inp.value || ‘New’; }
+document.getElementById(‘brandColor’).addEventListener(‘input’, function() { document.getElementById(‘colorPrev’).style.background = this.value; });
+// ============================================
+// LOADING
+// ============================================
+function showLoading(steps) {
+document.getElementById(‘loadingSteps’).innerHTML = steps.map((s, i) => <div class="loading-step" id="loadStep${i}">${s}</div>).join(’’);
+document.getElementById(‘loading’).classList.add(‘show’);
+let current = 0;
+const interval = setInterval(() => {
+if (current > 0) { document.getElementById(‘loadStep’ + (current - 1)).classList.remove(‘active’); document.getElementById(‘loadStep’ + (current - 1)).classList.add(‘done’); }
+if (current < steps.length) { document.getElementById(‘loadStep’ + current).classList.add(‘active’); current++; }
+else clearInterval(interval);
+}, 800);
+}
+function hideLoading() { document.getElementById(‘loading’).classList.remove(‘show’); }
+// ============================================
+// PREVIEW & DOWNLOAD
+// ============================================
+function showPreview() {
+const html = buildFinalHTML();
+const iframe = document.getElementById(‘previewFrame’);
+iframe.src = URL.createObjectURL(new Blob([html], { type: ‘text/html’ }));
+document.getElementById(‘previewOverlay’).classList.add(‘show’);
+document.body.style.overflow = ‘hidden’;
+}
+function closePreview(e) {
+if (!e || e.target === document.getElementById(‘previewOverlay’)) {
+document.getElementById(‘previewOverlay’).classList.remove(‘show’);
+document.body.style.overflow = ‘’;
+}
+}
+document.addEventListener(‘keydown’, e => { if (e.key === ‘Escape’) closePreview(); });
+function download() {
+const html = buildFinalHTML();
+const name = document.getElementById(‘brandName’).value || ‘My Guide’;
+const a = document.createElement(‘a’);
+a.href = URL.createObjectURL(new Blob([html], { type: ‘text/html’ }));
+a.download = name.replace(/\s+/g, ‘-’).toLowerCase() + ‘-itabs.html’;
+a.click();
+}
+function buildFinalHTML() {
+const name = document.getElementById(‘brandName’).value || ‘My Guide’;
+const client = document.getElementById(‘clientName’).value;
+const color = document.getElementById(‘brandColor’).value;
+const email = document.getElementById(‘contactEmail’).value;
+const embedVideo = document.getElementById(‘embedVideo’).checked;
+const vid = embedVideo ? youtubeVideoId : ‘’;
+
+const secs = [];
+document.querySelectorAll('.edit-section').forEach((el, i) => {
+    secs.push({
+        num: i + 1,
+        title: el.querySelector('.sec-title-in').value || 'Section ' + (i + 1),
+        badge: el.querySelector('.sec-badge-in').value || 'Info',
+        timestamp: el.querySelector('.sec-timestamp-in').value || '',
+        content: el.querySelector('.sec-content-in').value || '',
+        key: el.querySelector('.sec-key-in').value || ''
+    });
+});
+
+let videoEmbed = vid ? `<div class="video-container"><iframe id="ytPlayer" src="https://www.youtube-nocookie.com/embed/${vid}?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>` : '';
+
+let secHTML = '';
+secs.forEach(s => {
+    let tsLink = '';
+    if (s.timestamp && vid) {
+        const secs = tsToSec(s.timestamp);
+        tsLink = `<button class="timestamp-btn" onclick="event.stopPropagation();jumpToTime(${secs})">▶ ${s.timestamp}</button>`;
+    } else if (s.timestamp) {
+        tsLink = `<span class="timestamp-badge">${s.timestamp}</span>`;
+    }
+    secHTML += `<div class="itab-section"><div class="itab-header" onclick="toggle(this)"><div class="itab-title"><span class="itab-num">${s.num}</span><span class="itab-name">${s.title}</span><span class="itab-badge">${s.badge}</span>${tsLink}</div><button class="i-btn">i</button></div><div class="itab-content"><p>${s.content.replace(/\n/g, '<br>')}</p>${s.key ? `<div class="key-point"><div class="kp-label">💡 Key Point</div><p>${s.key}</p></div>` : ''}</div></div>`;
+});
+
+const thumb = vid ? `https://img.youtube.com/vi/${vid}/maxresdefault.jpg` : '';
+const desc = secs.length > 0 ? secs[0].content.substring(0, 155) + '...' : 'Interactive guide';
+
+return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${name}</title><meta name="description" content="${desc.replace(/"/g, '&quot;')}"><meta property="og:title" content="${name}"><meta property="og:description" content="${desc.replace(/"/g, '&quot;')}">${thumb ? `<meta property="og:image" content="${thumb}">` : ''}<meta name="theme-color" content="${color}"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--c:${color};--bg:#0f172a;--card:#1e293b;--txt:#f1f5f9;--txt2:#94a3b8;--bdr:#334155}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;padding:20px;line-height:1.6}.container{max-width:800px;margin:0 auto}header{text-align:center;padding:40px 20px;border-bottom:1px solid var(--bdr);margin-bottom:30px}.brand{font-size:1.2rem;font-weight:700;color:var(--c);margin-bottom:15px}h1{font-size:1.8rem;font-weight:700;margin-bottom:10px}.sub{color:var(--txt2)}.badge{display:inline-block;background:var(--card);border:1px solid var(--c);color:var(--c);padding:6px 16px;border-radius:20px;font-size:0.85rem;margin-top:15px}.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:30px;background:var(--card)}.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%}.itab-section{background:var(--card);border-radius:12px;margin-bottom:16px;border:1px solid var(--bdr);overflow:hidden}.itab-header{display:flex;align-items:center;justify-content:space-between;padding:20px;cursor:pointer;transition:background 0.2s}.itab-header:hover{background:#334155}.itab-title{display:flex;align-items:center;gap:15px;flex-wrap:wrap}.itab-num{width:36px;height:36px;background:var(--c);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#fff;flex-shrink:0}.itab-name{font-size:1.1rem;font-weight:600}.itab-badge{font-size:0.7rem;padding:4px 10px;border-radius:20px;background:#334155;color:var(--txt2);text-transform:uppercase}.timestamp-btn{font-size:0.75rem;padding:4px 12px;border-radius:4px;background:rgba(245,158,11,0.2);color:var(--c);font-family:monospace;border:1px solid transparent;cursor:pointer}.timestamp-btn:hover{background:rgba(245,158,11,0.4);border-color:var(--c)}.timestamp-badge{font-size:0.75rem;padding:4px 10px;border-radius:4px;background:#334155;color:var(--txt2);font-family:monospace}.i-btn{width:32px;height:32px;background:var(--c);border:none;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;font-family:serif;font-style:italic;flex-shrink:0}.i-btn.active{background:#10b981}.itab-content{display:none;padding:20px;border-top:1px solid var(--bdr)}.itab-content.show{display:block}.itab-content p{color:var(--txt2);margin-bottom:15px}.key-point{background:var(--bg);border-left:4px solid var(--c);padding:15px 20px;margin-top:15px;border-radius:0 8px 8px 0}.kp-label{color:var(--c);font-weight:600;font-size:0.85rem;margin-bottom:5px}.key-point p{color:var(--txt);margin:0}.support{background:var(--card);border-radius:12px;padding:25px;text-align:center;margin-top:30px}.support h3{color:var(--c);margin-bottom:10px}.support a{display:inline-block;background:var(--c);color:#fff;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:15px}footer{text-align:center;padding:30px;border-top:1px solid var(--bdr);margin-top:30px;color:var(--txt2);font-size:0.85rem}footer a{color:var(--c);text-decoration:none}@media(max-width:600px){.itab-title{gap:10px}.itab-name{font-size:1rem}}</style></head><body><div class="container"><header><div class="brand">${name}</div><h1>Your Guide</h1><p class="sub">Tap any section to learn more</p>${client ? `<span class="badge">Prepared for: ${client}</span>` : ''}</header>${videoEmbed}${secHTML}${email ? `<div class="support"><h3>Need Help?</h3><p style="color:var(--txt2)">Questions about this guide?</p><a href="mailto:${email}">Get in Touch →</a></div>` : ''}<footer>Created with <a href="https://itabs.ai">iTabs</a> • Tap to learn, scroll to act</footer></div><script>function toggle(h){h.nextElementSibling.classList.toggle('show');h.querySelector('.i-btn').classList.toggle('active')}function jumpToTime(s){var f=document.getElementById('ytPlayer');if(f){var u=f.src.split('?')[0];f.src=u+'?rel=0&modestbranding=1&start='+s+'&autoplay=1';window.scrollTo({top:0,behavior:'smooth'})}}document.querySelector('.itab-header')?.click()<\/script></body></html>`;
+
+
+}
+function tsToSec(ts) {
+if (!ts) return 0;
+const p = ts.replace(/[[]]/g, ‘’).split(’:’).map(Number);
+if (p.length === 3) return p[0] * 3600 + p[1] * 60 + p[2];
+if (p.length === 2) return p[0] * 60 + p[1];
+return 0;
+}
+// ============================================
+// CHAT ASSISTANT
+// ============================================
+const STEP_CONFIG = {
+1: { context: ‘Step 1: Setup’, greeting: “👋 Welcome! I’ll help you create interactive guides. First, you need a free Gemini API key.”, tips: [‘Get your key from Google AI Studio - it's free!’, ‘Your key stays in your browser only.’], quickReplies: [‘How do I get a key?’, ‘Is it free?’, ‘Is my data safe?’] },
+2: { context: ‘Step 2: Add Content’, greeting: “Great! Now paste your content. YouTube transcripts work best!”, tips: [‘Paste a YouTube URL and click “Get Transcript”’, ‘Timestamps like [00:01:23] become clickable links’], quickReplies: [‘What content works best?’, ‘How do I get a transcript?’, ‘Explain timestamps’] },
+3: { context: ‘Step 3: Edit & Download’, greeting: “Your guide is ready! Review and edit the sections below.”, tips: [‘Click any section to expand and edit it’, ‘Use Preview to see how it looks’], quickReplies: [‘How do I edit?’, ‘Can I add sections?’, ‘Preview help’] }
+};
+const RESPONSES = {
+‘how do i get a key’: “Easy! Click <strong>‘Get your key’</strong> below the input. Sign in with Google, click ‘Create API Key’ - done in 30 seconds.”,
+‘is it free’: “Yes! Gemini’s free tier is generous. You won’t pay unless creating hundreds of guides daily.”,
+‘is my data safe’: “Your API key stays <strong>only in your browser</strong>. We never see it or your content.”,
+‘what content works best’: “Best for iTabs:<br>• <strong>Training videos</strong><br>• <strong>Meeting recordings</strong><br>• <strong>Tutorials</strong><br>• <strong>Documentation</strong>”,
+‘how do i get a transcript’: “For <strong>YouTube</strong>: Paste the URL and click ‘Get Transcript’.<br>For <strong>other videos</strong>: Try Otter.ai or Descript.”,
+‘explain timestamps’: “Timestamps like <strong>[00:01:23]</strong> become clickable. Tap one → video jumps to that moment!”,
+‘how do i edit’: “Click any <strong>section header</strong> to expand it. Edit the title, content, and key point.”,
+‘can i add sections’: “Yes! Click <strong>’+ Add Section’</strong> below. Aim for 4-6 sections.”,
+‘preview help’: “Click <strong>‘👁️ Preview’</strong> to see exactly how your guide will look.”,
+‘default’: “I can help with API keys, adding content, and editing your guide. What do you need?”
+};
+function initChat() {
+document.getElementById(‘chatToggle’).addEventListener(‘click’, toggleChat);
+document.getElementById(‘chatClose’).addEventListener(‘click’, closeChat);
+document.getElementById(‘chatSend’).addEventListener(‘click’, sendChatMessage);
+document.getElementById(‘chatInput’).addEventListener(‘keydown’, e => { if (e.key === ‘Enter’ && !e.shiftKey) { e.preventDefault(); sendChatMessage(); } });
+document.getElementById(‘chatQuickReplies’).addEventListener(‘click’, e => { if (e.target.classList.contains(‘quick-reply’)) handleQuickReply(e.target.textContent); });
+
+setTimeout(() => {
+    const cfg = STEP_CONFIG[step];
+    addChatMessage('assistant', cfg.greeting);
+    setTimeout(() => addChatMessage('assistant', cfg.tips[0]), 800);
+    updateQuickReplies();
+}, 1500);
+
+
+}
+function toggleChat() {
+chatOpen = !chatOpen;
+document.getElementById(‘chatWindow’).classList.toggle(‘open’, chatOpen);
+if (chatOpen) { document.getElementById(‘chatBadge’).classList.add(‘hidden’); hasUnread = false; document.getElementById(‘chatInput’).focus(); }
+}
+function closeChat() { chatOpen = false; document.getElementById(‘chatWindow’).classList.remove(‘open’); }
+function updateChatContext() {
+const cfg = STEP_CONFIG[step];
+if (cfg) {
+document.getElementById(‘chatContext’).textContent = cfg.context;
+updateQuickReplies();
+if (chatOpen) addChatMessage(‘assistant’, cfg.greeting);
+}
+}
+function updateQuickReplies() {
+const cfg = STEP_CONFIG[step];
+if (cfg) document.getElementById(‘chatQuickReplies’).innerHTML = cfg.quickReplies.map(r => <button class="quick-reply">${r}</button>).join(’’);
+}
+function addChatMessage(type, content) {
+const msgs = document.getElementById(‘chatMessages’);
+const avatar = type === ‘assistant’ ? ‘🤖’ : ‘👤’;
+msgs.insertAdjacentHTML(‘beforeend’, <div class="chat-message ${type}"><div class="message-avatar">${avatar}</div><div class="message-content">${content}</div></div>);
+msgs.scrollTop = msgs.scrollHeight;
+if (!chatOpen && type === ‘assistant’) { hasUnread = true; document.getElementById(‘chatBadge’).textContent = ‘!’; document.getElementById(‘chatBadge’).classList.remove(‘hidden’); }
+}
+function sendChatMessage() {
+const input = document.getElementById(‘chatInput’);
+const msg = input.value.trim();
+if (!msg) return;
+addChatMessage(‘user’, msg);
+input.value = ‘’;
+setTimeout(() => addChatMessage(‘assistant’, getResponse(msg)), 600);
+}
+function handleQuickReply(text) {
+addChatMessage(‘user’, text);
+setTimeout(() => addChatMessage(‘assistant’, getResponse(text)), 500);
+}
+function getResponse(input) {
+const n = input.toLowerCase().trim();
+for (const [k, v] of Object.entries(RESPONSES)) { if (n.includes(k)) return v; }
+return RESPONSES.default + ‘<br><br>’ + STEP_CONFIG[step].tips.map(t => ‘• ’ + t).join(’<br>’);
+}
 </script>
-<br>
-<br>
-<br>
-<br>
-    
+</body>
+</html>
